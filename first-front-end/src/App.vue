@@ -13,15 +13,30 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("cliccato", this.newTask.description)
+      console.log("cliccato", this.newTask.description);
 
+      const url= "http://localhost:8888/php-todo-list-json/postTask.php";
+      const data= this.newTask;
+      const headers ={
+        headers: { 'Content-type' : 'multipart/form-data'}
+      };
+
+      axios.post(url, data, headers)
+        .then(response => {
+          console.log(response);
+          console.log(response.data);
+
+          this.tasks = response.data;
+
+          this.newTask.description = ""
+
+        });
     }
-
   },
   mounted() {
     console.log("ciaociaociao");
 
-    axios.get("http://localhost:8888/php-todo-list-json/")
+    axios.get("http://localhost:8888/php-todo-list-json/index.php")
       .then(response => {
         console.log(response);
         console.log(response.data);
@@ -63,9 +78,14 @@ ul{
   background-color: white;
   color: black;
   border-radius: 10px;
+  list-style: none;
+  padding: 0;
 
-  li{
+  
+}
+
+li{
+    margin:10px;
     border-bottom: 1px solid black;
   }
-}
 </style>
