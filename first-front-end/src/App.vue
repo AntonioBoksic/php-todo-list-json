@@ -21,20 +21,24 @@ export default {
       });
 
   }
-}
+} 
 </script>
 
 <template>
   <div>
-   ciao da Vue
+    <h1>Todo List</h1>
+   
   </div>
   <ul>
     <li
-    v-for="(task, index) in tasks" key="index"
+    v-for="(task, index) in tasks" :key="index"
     >
     {{task.description }}
   </li>
   </ul>
+  <form >
+    
+  </form>
 
 </template>
 
