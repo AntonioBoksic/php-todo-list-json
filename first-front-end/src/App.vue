@@ -4,7 +4,17 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      tasks: []
+      tasks: [],
+      newTask: {
+        description: ""
+      }
+    }
+
+  },
+  methods: {
+    onSubmit() {
+      console.log("cliccato", this.newTask.description)
+
     }
 
   },
@@ -36,12 +46,26 @@ export default {
     {{task.description }}
   </li>
   </ul>
-  <form >
-    
+  <form 
+  @submit.prevent="onSubmit"
+  >
+  <label for="name">name </label>
+  <input type="text" name="name" id="name" v-model="newTask.description">
+  <input type="submit" value="create new task">
+
   </form>
 
 </template>
 
 
 <style scoped>
+ul{
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+
+  li{
+    border-bottom: 1px solid black;
+  }
+}
 </style>
