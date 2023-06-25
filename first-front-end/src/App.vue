@@ -9,7 +9,6 @@ export default {
         description: ""
       }
     }
-
   },
   methods: {
     onSubmit() {
@@ -28,8 +27,8 @@ export default {
 
           this.tasks = response.data;
 
+          //svuoto newTask.description
           this.newTask.description = ""
-
         });
     }
   },
@@ -52,8 +51,8 @@ export default {
 <template>
   <div>
     <h1>Todo List</h1>
-   
   </div>
+  <!-- da qui inizia la lsita -->
   <ul>
     <li
     v-for="(task, index) in tasks" :key="index"
@@ -61,11 +60,12 @@ export default {
     {{task.description }}
   </li>
   </ul>
+  <!-- da qui inizia form -->
   <form 
   @submit.prevent="onSubmit"
   >
-  <label for="name">name </label>
-  <input type="text" name="name" id="name" v-model="newTask.description">
+  <label for="newtask">name </label>
+  <input type="text" name="newtask" id="newtask" v-model="newTask.description">
   <input type="submit" value="create new task">
 
   </form>

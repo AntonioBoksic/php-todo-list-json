@@ -18,6 +18,7 @@ header('Content-Type: application/json');
 
 $tasksStr = file_get_contents('data.json');
 
+//questo in realtà non serve perchè get_contents già mi dà una json encoded string, quello che faccio con le prossime due righe di codice sarebbe decodarlo e ottenere un oggetto che poi vado a encodare di nuovo (non ha senso) per poi andarlo a displayare con echo, quello che potrei fare è usare un echo direttamente su $tasksStr che è già nel formato giusto.
 $tasks = json_decode($tasksStr);
 
 //con json_encode trasformo i dati in un json in modo che può leggerli Vue quando li chiama con Axios
