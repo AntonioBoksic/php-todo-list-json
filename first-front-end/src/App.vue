@@ -30,6 +30,21 @@ export default {
           //svuoto newTask.description
           this.newTask.description = ""
         });
+    },
+    deleteTask(index) {
+      console.log("attivato funzione delete", index);
+
+      const url = "http://localhost:8888/php-todo-list-json/deleteTask.php";
+      const data = {"indice": index};
+      const headers ={
+        headers: { 'Content-type' : 'multipart/form-data'}
+      };
+
+      axios.post(url, data, headers)
+        .then(response => {
+          console.log(response.data);
+          this.tasks = response.data;
+        })
     }
   },
   mounted() {
@@ -55,9 +70,17 @@ export default {
   <!-- da qui inizia la lsita -->
   <ul>
     <li
-    v-for="(task, index) in tasks" :key="index"
+    v-for="(task, index) in tasks" 
+    :key="index"
     >
     {{task.description }}
+
+    <button type="button" 
+    style="color: red;" 
+    @click="deleteTask(index)">
+    X
+    </button>
+  
   </li>
   </ul>
   <!-- da qui inizia form -->
