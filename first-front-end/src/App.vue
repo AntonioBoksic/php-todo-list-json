@@ -6,7 +6,8 @@ export default {
     return {
       tasks: [],
       newTask: {
-        description: ""
+        description: "",
+        completed: false
       }
     }
   },
@@ -72,8 +73,9 @@ export default {
     <li
     v-for="(task, index) in tasks" 
     :key="index"
+    :class="task.completed==='true' ? 'barrato' : 'nonbarrato'"
     >
-    {{task.description }}
+    {{task.description }} {{ task.completed }}
 
     <button type="button" 
     style="color: red;" 
@@ -110,5 +112,10 @@ ul{
 li{
     margin:10px;
     border-bottom: 1px solid black;
+  }
+
+  .barrato{
+    text-decoration: line-through;
+    text-decoration-thickness: 5px;
   }
 </style>
