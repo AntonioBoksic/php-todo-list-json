@@ -46,6 +46,21 @@ export default {
           console.log(response.data);
           this.tasks = response.data;
         })
+    },
+    changeCompleted(index) {
+      console.log("ora devo capire come cambiare stato completed", index);
+
+      const url = "http://localhost:8888/php-todo-list-json/changeCompletedStatus.php";
+      const data = {"indice": index};
+      const headers ={
+        headers: { 'Content-type' : 'multipart/form-data'}
+      };
+
+      axios.post(url, data, headers)
+        .then(response => {
+          console.log(response.data);
+          this.tasks = response.data;
+        })
     }
   },
   mounted() {
@@ -75,7 +90,10 @@ export default {
     :key="index"
     :class="task.completed==='true' ? 'barrato' : 'nonbarrato'"
     >
-    {{task.description }} {{ task.completed }}
+     <span @click="changeCompleted(index)">
+      {{task.description }} {{ task.completed }}
+    </span>
+      {{task.description }} {{ task.completed }}
 
     <button type="button" 
     style="color: red;" 
@@ -116,6 +134,6 @@ li{
 
   .barrato{
     text-decoration: line-through;
-    text-decoration-thickness: 5px;
+    text-decoration-thickness: 3px;
   }
 </style>
