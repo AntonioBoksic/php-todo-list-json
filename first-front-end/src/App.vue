@@ -93,7 +93,6 @@ export default {
      <span @click="changeCompleted(index)">
       {{task.description }} {{ task.completed }}
     </span>
-      {{task.description }} {{ task.completed }}
 
     <button type="button" 
     style="color: red;" 
@@ -130,10 +129,12 @@ ul{
 li{
     margin:10px;
     border-bottom: 1px solid black;
+    
   }
 
   .barrato{
     text-decoration: line-through;
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: 1px;
+
   }
 </style>
