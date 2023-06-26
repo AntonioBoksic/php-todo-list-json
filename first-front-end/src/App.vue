@@ -88,7 +88,7 @@ export default {
     <li
     v-for="(task, index) in tasks" 
     :key="index"
-    :class="task.completed==='true' ? 'barrato' : 'nonbarrato'"
+    :class="task.completed==='true' ? 'barrato' : ''"
     >
      <span @click="changeCompleted(index)">
       {{task.description }} {{ task.completed }}
